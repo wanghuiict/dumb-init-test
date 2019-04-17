@@ -31,7 +31,11 @@ docker dumb-init example
     Successfully built 7ec60e9c55d1
     Successfully tagged centos:dumb-init-test
   
-# test
+# test 1
+
+edit Dockfile,
+
+    ENTRYPOINT ["dumb-init", "--single-child", "-v", "--"]
 
 ## start docker container
     # docker run --rm --name test1 -it centos:dumb-init-test
