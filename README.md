@@ -33,9 +33,13 @@ docker dumb-init example
   
 # test 1
 
-edit Dockfile,
+## edit Dockfile's ENTRYPOINT
 
     ENTRYPOINT ["dumb-init", "--single-child", "-v", "--"]
+
+## build docker image
+
+    # docker build -t centos:dumb-init-test .
 
 ## start docker container
     # docker run --rm --name test1 -it centos:dumb-init-test
@@ -53,7 +57,7 @@ edit Dockfile,
     [root@9a2881400f78 /]# kill -15 6
     [root@9a2881400f78 /]# kill -15 1
     
- ## the first window output
+ ## container output
      # docker run --rm --name test1 -it centos:dumb-init-test
     [dumb-init] Child spawned with PID 6.
     [dumb-init] Received signal 28.
@@ -74,19 +78,19 @@ edit Dockfile,
     [dumb-init] Child exited with status 130. Goodbye.
                                                           
 # test 2
-edit Dockfile,
+## edit Dockfile's ENTRYPOINT
 
     ENTRYPOINT ["dumb-init", "-v", "--"]
 
-build docker image
+## build docker image
 
     # docker build -t centos:dumb-init-test .
 
-run docker container
+## run docker container
 
     # docker run --rm --name test1 -it centos:dumb-init-test
     
-open shell in container
+## execute `kill' in container
 
     # docker exec -it test1 /bin/bash
     [root@acf551957c7e /]# ps -eHo pid,ppid,pgid,cmd
@@ -101,7 +105,7 @@ open shell in container
     [root@acf551957c7e /]# kill -15 1
     [root@acf551957c7e /]# kill -15 1
 
-check container output
+## container output
 
     # docker run --rm --name test1 -it centos:dumb-init-test
     [dumb-init] Detached from controlling tty, ignoring the first SIGHUP and SIGCONT we receive.
